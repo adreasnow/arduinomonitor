@@ -5,3 +5,8 @@ A playground for a simple arduno monitor that cycles through a few loops indefin
 Designed to run with the modified SerialDisplay arduino example (supplied) on the arduino uno R3 with an LCD Keypad Shield (duinotech XC-4454) using the HD44780 protocol.
 
 Was initially inspired by a joke that *"We really need seven segment display counters to count down how many allocated compute hours we have left each quarter"*
+
+
+<centering>
+<img src="https://i0.wp.com/saber.patagoniatec.com/wp-content/uploads/2019/08/tabla-de-caracteres.png">
+</centering>
