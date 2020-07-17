@@ -30,6 +30,20 @@ def runbash(command):
     if output != "":
         return(output.decode("utf-8"))
 
+def cpupower():
+	volts = subprocess.check_output("sensors k10temp-pci-00c3 | grep 'Vcore:' | tr -s ' '", shell=True)
+	volts = volts.decode("utf-8").split()
+
+	if volts[2] == "V":
+		numvolts = float(volts[1])
+	if volts[2] == "mV":
+		numvolts = float(volts[1]) / 1000
+
+	amps = subprocess.check_output("sensors k10temp-pci-00c3 | grep 'Icore:' | tr -s ' ' | cut -d' ' -f 2", shell=True)
+	amps = amps.decode("utf-8")
+
+	return(	str(round(numvolts * float(amps), 2)) + "W")
+
 HD44780 = {" " : 0x20, "A" : 0x41, "B" : 0x42, "C" : 0x43, "D" : 0x44,
 		   "E" : 0x45, "F" : 0x46, "G" : 0x47, "H" : 0x48, "I" : 0x49, 
 		   "J" : 0x4A, "K" : 0x4B, "M" : 0x4D, "O" : 0x4F, "P" : 0x50,

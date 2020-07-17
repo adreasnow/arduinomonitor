@@ -14,7 +14,7 @@ while True:
 	# cpu/gpu power meter
 	endtime = time.time() + functime
 	while endtime > time.time():
-		cpupow = runbash('/data/Computation/Scripts/conky/conkywatts.py')
+		cpupow = cpupower()
 		gpupow = runbash("sensors | grep 'power1' | tr -s ' ' | cut -d' ' -f2") + "W"
 		padding = ''
 		for i in range(16 - len(cpupow + gpupow)):
@@ -60,9 +60,7 @@ while True:
 		printtoarduino(arduino, "Mem utilisation:", usagebar)
 		time.sleep(0.5)
 
-
-
-	printtoarduino(arduino, "CPU Governor:", runbash("/data/Computation/Scripts/conky/conkygov.sh"))
+	printtoarduino(arduino, "CPU Governor:", runbash("cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor").capitalize())
 	time.sleep(3)
 
 	
