@@ -5,8 +5,8 @@ import time
 def printtoarduino(arduino, line1, line2):
 	# pads the lines to ensure line2 is forced on to the second line 
 	# and the cursor is forced off the screen, since \r and \n don't seem to work
-	printstring = line1[0:16] + padding(line1[0:16]) + line2[0:16] + padding(line1[0:16])
-
+	printstring = line1[0:16] + padding(line1[0:16]) + line2[0:16] + padding(line2[0:16])
+	
 	# converts characters in the string to a bytearray for better compatability 
 	packet = bytearray()
 	for i in range(32):

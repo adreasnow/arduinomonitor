@@ -17,7 +17,7 @@ while True:
 	while endtime > time.time():
 		cpupow = cpupower()
 		gpupow = runbash("sensors | grep 'power1' | tr -s ' ' | cut -d' ' -f2") + "W"
-		printtoarduino(arduino, "CPU  -POWR-  GPU", cpupow + padding(cpupow + gpupow) + gpupow)
+		printtoarduino(arduino, "CPU  -POWR-  HD44780GPU", cpupow + padding(cpupow + gpupow) + gpupow)
 		time.sleep(refreshint)
 
 	# cpu frequencies
