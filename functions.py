@@ -5,31 +5,39 @@ import time
 def printtoarduino(arduino, line1, line2):
 	# pads the lines to ensure line2 is forced on to the second line 
 	# and the cursor is forced off the screen, since \r and \n don't seem to work
-	line1len = len(line1)
-	line2len = len(line2)
-	line1pad = 16 - line1len
-	line2pad = 16 - line2len
-	line1padstr = ''
-	line2padstr = ''
-	for i in range(line1pad):
-		line1padstr = line1padstr + ' '
-	for i in range(line2pad):
-		line2padstr = line2padstr + ' '
-	printstring = line1[0:16] + line1padstr + line2[0:16] + line2padstr
+	printstring = line1[0:16] + padding(line1[0:16]) + line2[0:16] + padding(line1[0:16])
 
+	# converts characters in the string to a bytearray for better compatability 
 	packet = bytearray()
 	for i in range(32):
 		j = printstring[i]
 		packet.append(HD44780[j])
 
+	# sends the packet over the serial port
 	arduino.write(packet)
 
-# Simple running of bash commands 
+# generates a certain amount of padding based on the length of the input string  
+def padding(textstring):
+	padding = ''
+	for i in range(16 - len(textstring)):
+		padding = padding + ' '
+	return(padding)
+
+# generates a bar of the length specified that fis filled by a certain number of blocks  
+def usagebar(decimal, length):
+	bar = ''
+	for i in range(round(decimal * length)):
+		bar = bar + '█'
+	return(bar)
+
+# runs bash commands and returns the decoded output (if not empty)
 def runbash(command):
     output = subprocess.run(command, stdout=subprocess.PIPE, shell=True).stdout.strip()
     if output != "":
         return(output.decode("utf-8"))
 
+# stolen from another script I wrote, this just probes the k10temp module to get the voltage 
+# and current to outpu the wattage of the processor
 def cpupower():
 	volts = subprocess.check_output("sensors k10temp-pci-00c3 | grep 'Vcore:' | tr -s ' '", shell=True)
 	volts = volts.decode("utf-8").split()
@@ -44,6 +52,16 @@ def cpupower():
 
 	return(	str(round(numvolts * float(amps), 2)) + "W")
 
+# simply outputs the highest and lowest frequencies of the cpu cores
+def cpufreq():
+	freq = subprocess.check_output("cat /proc/cpuinfo | grep MHz | cut -d' ' -f3", shell=True)
+	freq = freq.split()
+	for i in range(len(freq)):
+		freq[i]=float(freq[i])
+
+	return(str(round(min(freq)/1000, 2)) + "GHz", str(round(max(freq)/1000, 2)) + "GHz")
+
+# a dictionary to translate all the string characters (that i've chosen) into bytes objects that the HD44780 can understand
 HD44780 = {" " : 0x20, "A" : 0x41, "B" : 0x42, "C" : 0x43, "D" : 0x44,
 		   "E" : 0x45, "F" : 0x46, "G" : 0x47, "H" : 0x48, "I" : 0x49, 
 		   "J" : 0x4A, "K" : 0x4B, "M" : 0x4D, "O" : 0x4F, "P" : 0x50,
@@ -63,4 +81,4 @@ HD44780 = {" " : 0x20, "A" : 0x41, "B" : 0x42, "C" : 0x43, "D" : 0x44,
 		   ">" : 0x3E, "?" : 0x3F, "@" : 0x40, "[" : 0x5B, "]" : 0x5D,
 		   "^" : 0x5E, "_" : 0x5F, "`" : 0x60, "{" : 0x7B, "|" : 0x7C,
 		   "}" : 0x7D, "→" : 0x7E, "←" : 0x7F, "·" : 0x85, "°" : 0xDF,
-		   "█" : 0xFF, "~" : 0xB0}
+		   "█" : 0xFF, "~" : 0xB0, "L" : 0x4C, "N" : 0x4E,}
