@@ -57,7 +57,7 @@ void loop()
  int charcount;
  boolean secondline;
  if (Serial.available()) {
-   delay(10);
+   delay(100);
    lcd.clear();
    charcount = 0;
    secondline = false;
