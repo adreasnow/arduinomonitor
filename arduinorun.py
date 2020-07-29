@@ -3,7 +3,7 @@ import serial
 import time
 from functions import *
 
-functime = 5
+functime = 7
 refreshint = 1
 arduino = Serial('/dev/ttyACM0', 115200, timeout=0, parity=serial.PARITY_EVEN, rtscts=1)
 time.sleep(2)
@@ -17,7 +17,7 @@ while True:
 	while endtime > time.time():
 		cpupow = cpupower()
 		gpupow = runbash("sensors | grep 'power1' | tr -s ' ' | cut -d' ' -f2") + "W"
-		printtoarduino(arduino, "CPU  -POWR-  HD44780GPU", cpupow + padding(cpupow + gpupow) + gpupow)
+		printtoarduino(arduino, "CPU  -POWR-  GPU", cpupow + padding(cpupow + gpupow) + gpupow)
 		time.sleep(refreshint)
 
 	# cpu frequencies
