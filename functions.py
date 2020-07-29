@@ -1,5 +1,7 @@
 import subprocess
 import time
+from datetime import datetime, timedelta, date
+import math
 
 # prints to the arduino over serial
 def printtoarduino(arduino, line1, line2):
@@ -60,6 +62,23 @@ def cpufreq():
 		freq[i]=float(freq[i])
 
 	return(str(round(min(freq)/1000, 2)) + "GHz", str(round(max(freq)/1000, 2)) + "GHz")
+
+def daysuntil(enddate):
+	weeks = math.floor((enddate - date.today()).days/7)
+	days = (enddate - date.today()).days % 7
+	if days == 0:
+		daystring = ""
+		days = ""
+		weekstring = " Weeks"
+	elif days == 1:
+		daystring = " day"
+		weekstring = " Weeks, "
+	else:
+		daystring = " days"
+		weekstring = " Weeks, "
+
+	return(str(weeks)  + weekstring + str(days) + daystring)
+
 
 # a dictionary to translate all the string characters (that i've chosen) into bytes objects that the HD44780 can understand
 HD44780 = {" " : 0x20, "A" : 0x41, "B" : 0x42, "C" : 0x43, "D" : 0x44,
