@@ -6,11 +6,13 @@ from functions import *
 
 functime = 7
 refreshint = 1
-hostname = runbash("hostname")
-if hostname == "Rosalind":
-	arduino = Serial('/dev/ttyACM0', 115200, timeout=0, parity=serial.PARITY_EVEN, rtscts=1)
-elif hostname == "Lise":
-	arduino = Serial('/dev/tty.usbmodem1414201', 115200, timeout=0, parity=serial.PARITY_EVEN, rtscts=1)
+uname = runbash("uname")
+if uname == "Linux":
+	dev = runbash("ls /dev/ | grep 'ACM'")
+	arduino = Serial('/dev/' + dev, 115200, timeout=0, parity=serial.PARITY_EVEN, rtscts=1)
+elif uname == "Darwin":
+	dev = runbash("ls /dev/ | grep 'usbmodem'")
+	arduino = Serial('/dev/' + dev, 115200, timeout=0, parity=serial.PARITY_EVEN, rtscts=1)
 time.sleep(2)
 
 
@@ -30,7 +32,7 @@ while True:
 		time.sleep(3)
 
 ###################################### For rosalind #######################################
-		# if hostname == "Rosalind":
+		# if uname == "Rosalind":
 		# 	# cpu/gpu power meter
 		# 	endtime = time.time() + functime
 		# 	while endtime > time.time():
