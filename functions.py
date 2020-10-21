@@ -101,12 +101,12 @@ def uniweek(currdate):
 		swinweek = "Week 6"
 	elif currdate < date(day=20,month=9,year=2020):
 		monweek = "Week 7"
-		swinweek = "Mid Sem Break"
+		swinweek = "Mid Sem"
 	elif currdate < date(day=27,month=9,year=2020):
-		monweek = "Mid Sem Break"
+		monweek = "Mid Sem"
 		swinweek = "Week 7"
 	elif currdate < date(day=4,month=10,year=2020):
-		monweek = "Mid Sem Break"
+		monweek = "Mid Sem"
 		swinweek = "Week 8"
 	elif currdate < date(day=11,month=10,year=2020):
 		monweek = "Week 8"
@@ -123,16 +123,13 @@ def uniweek(currdate):
 	elif currdate < date(day=7,month=11,year=2020):
 		monweek = "Week 12"
 		swinweek = "SWOTVAC"
-	elif currdate < date(day=16,month=11,year=2020):
+	elif currdate < date(day=10,month=11,year=2020):
 		monweek = "SWOTVAC"
-		swinweek = "Exams"		
-	elif currdate < date(day=23,month=11,year=2020):
-		monweek = "Exams"
 		swinweek = "Exams"
 	elif currdate < date(day=1,month=12,year=2020):
 		monweek = "Exams"
 		swinweek = "DONE!"
-	elif currdate > date(day=1,month=12,year=2020):
+	elif currdate > date(day=2,month=12,year=2020):
 		monweek = "DONE"
 		swinweek = "DONE!"
 	return(str(monweek), str(swinweek))

@@ -24,7 +24,7 @@ while True:
 		printtoarduino(arduino, "Uni Sem Left:", daysuntil(date(2020,11,4)))
 		time.sleep(3)
 
-		printtoarduino(arduino, "Uni Left:", daysuntil(date(2020,11,30)))
+		printtoarduino(arduino, "Uni Left:", daysuntil(date(2020,12,1)))
 		time.sleep(3)
 
 		monweek, swinweek = uniweek(date.today())
