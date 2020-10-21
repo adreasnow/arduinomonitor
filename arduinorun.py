@@ -11,7 +11,7 @@ if uname == "Linux":
 	dev = runbash("ls /dev/ | grep 'ACM'")
 	arduino = Serial('/dev/' + dev, 115200, timeout=0, parity=serial.PARITY_EVEN, rtscts=1)
 elif uname == "Darwin":
-	dev = runbash("ls /dev/ | grep 'usbmodem'")
+	dev = runbash("ls /dev/ | grep 'usbmodem' | grep 'tty'")
 	arduino = Serial('/dev/' + dev, 115200, timeout=0, parity=serial.PARITY_EVEN, rtscts=1)
 time.sleep(2)
 
