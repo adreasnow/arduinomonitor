@@ -78,7 +78,10 @@ def daysuntil(enddate):
 		daystring = " days"
 		weekstring = " Weeks, "
 
-	return(str(weeks)  + weekstring + str(days) + daystring)
+	if weeks != 0:
+		return(str(weeks)  + weekstring + str(days) + daystring)
+	else:
+		return(str(days) + daystring)
 
 def uniweek(currdate):
 	if currdate < date(day=9,month=8,year=2020):
@@ -123,14 +126,17 @@ def uniweek(currdate):
 	elif currdate < date(day=7,month=11,year=2020):
 		monweek = "Week 12"
 		swinweek = "SWOTVAC"
-	elif currdate < date(day=10,month=11,year=2020):
+	elif currdate < date(day=11,month=11,year=2020):
 		monweek = "SWOTVAC"
 		swinweek = "Exams"
-	elif currdate < date(day=1,month=12,year=2020):
+	elif currdate < date(day=12,month=11,year=2020):
+		monweek = "SWOTVAC"
+		swinweek = "DONE!"
+	elif currdate < date(day=2,month=12,year=2020):
 		monweek = "Exams"
 		swinweek = "DONE!"
-	elif currdate > date(day=2,month=12,year=2020):
-		monweek = "DONE"
+	elif currdate > date(day=1,month=12,year=2020):
+		monweek = "DONE!"
 		swinweek = "DONE!"
 	return(str(monweek), str(swinweek))
 
