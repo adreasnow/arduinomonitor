@@ -128,8 +128,8 @@ def uniweek(currdate):
 		swinweek = "SWOTVAC"
 	elif currdate < date(day=11,month=11,year=2020):
 		monweek = "SWOTVAC"
-		swinweek = "Exams"
-	elif currdate < date(day=12,month=11,year=2020):
+		swinweek = "Assessments"
+	elif currdate < date(day=21,month=11,year=2020):
 		monweek = "SWOTVAC"
 		swinweek = "DONE!"
 	elif currdate < date(day=2,month=12,year=2020):
