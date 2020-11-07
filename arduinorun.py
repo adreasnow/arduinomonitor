@@ -3,7 +3,6 @@ import serial
 import time
 from functions import *
 
-
 functime = 7
 refreshint = 1
 uname = runbash("uname")
@@ -16,7 +15,7 @@ elif uname == "Darwin":
 time.sleep(2)
 
 
-# Master loop. loops thorugh all of the sub functions of the display
+# Master loop. Loops thorugh all of the sub functions of the display
 while True:
 		printtoarduino(arduino, "Surgery Wait:", daysuntil(date(2020,12,9)))
 		time.sleep(3)

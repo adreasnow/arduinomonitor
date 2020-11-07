@@ -68,9 +68,14 @@ def daysuntil(enddate):
 	weeks = math.floor((enddate - date.today()).days/7)
 	days = (enddate - date.today()).days % 7
 	if days == 0:
-		daystring = ""
-		days = ""
-		weekstring = " Weeks"
+		if weeks == 0:
+			daystring = " days"
+			weekstring = ""
+			weeks = ""
+		else:
+			daystring = ""
+			days = ""
+			weekstring = " Weeks"
 	elif days == 1:
 		daystring = " day"
 		weekstring = " Weeks, "
