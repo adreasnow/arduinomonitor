@@ -56,7 +56,7 @@ def printgadiusername():
 	return(globals()['gadiusername'])
 
 def gadiusagebar():
-	return(float(globals()['gadi_used_me'])/float(globals()['gadi_reserved_me']) * 16, float(globals()['gadi_avail_me']))
+	return((float(globals()['gadi_reserved_me'])-float(globals()['gadi_used_me']))/float(globals()['gadi_reserved_me']), float(globals()['gadi_avail_me']))
 
 
 def gadiusageproject():
