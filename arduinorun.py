@@ -18,7 +18,7 @@ time.sleep(2)
 
 # Master loop. Loops thorugh all of the sub functions of the display
 while True:
-	printtoarduino(arduino, "Gadi Home Usage", "429.17 K/269.81 K")
+	printtoarduino(arduino, "Gadi Home Usage", "429.17K/269.81K")
 	time.sleep(3)
 
 	printtoarduino(arduino, "Surgery Wait:", daysuntil(date(2020,12,9)))
