@@ -25,8 +25,8 @@ def getgadiusage():
 		globals()['gadi_avail_project'] = gadioutput[5].split()[1] + " " + gadioutput[5].split()[2][0]
 		for i in range(0, len(gadioutput) - 2):
 			if "fhh565" in gadioutput[i]:
-				globals()['gadi_used_me'] = gadioutput[i].split()[1] + " " + gadioutput[i].split()[2]
-				globals()['gadi_reserved_me'] = gadioutput[i].split()[3] + " " + gadioutput[i].split()[4]
+				globals()['gadi_used_me'] = gadioutput[i].split()[1] + " " + gadioutput[i].split()[2][0]
+				globals()['gadi_reserved_me'] = gadioutput[i].split()[3] + " " + gadioutput[i].split()[4][0]
 		print("ssh call")
 	if 'gadiusageruntime' in vars() or 'gadiusageruntime' in globals():
 		timesince = time.time() - globals()['gadiusageruntime']
@@ -43,12 +43,12 @@ def getgadiusage():
 
 def gadiusageproject():
 	getgadiusage()
-	return(globals()['gadi_avail_project'] + " / " + globals()['gadi_grant_project'])
+	return(globals()['gadi_avail_project'] + "/" + globals()['gadi_grant_project'])
 
 
 def gadiusageme():
 	getgadiusage()
-	return(globals()['gadi_used_me'] + " / " + globals()['gadi_reserved_me'])
+	return(globals()['gadi_used_me'] + "/" + globals()['gadi_reserved_me'])
 
 
 def getgadihomequota():
@@ -67,7 +67,7 @@ def gadihomequota():
 		globals()['gadi_homequota'] = getgadihomequota().split()[0]
 		globals()['gadihomequotaruntime'] = time.time()
 
-	return(globals()['gadi_homequota'] + " / 10G")
+	return(globals()['gadi_homequota'] + "/10G")
 
 # for i in range(200):
 # 	print(gadiusageproject())

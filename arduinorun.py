@@ -34,7 +34,7 @@ while True:
 		printtoarduino(arduino, "Gadi Personal", gadiusageme())
 		time.sleep(3)
 
-		printtoarduino(arduino, "Gadi \'du -hs ~\'", gadihomequota())
+		printtoarduino(arduino, "Gadi Home Usage", gadihomequota())
 		time.sleep(3)
 
 ###################################### For rosalind #######################################
