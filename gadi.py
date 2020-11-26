@@ -36,7 +36,8 @@ def getgadiusage():
 		globals()['gadi_reserved_project'] = msu2ksu(gadioutput[4].split()[1], gadioutput[4].split()[2])
 		globals()['gadi_avail_project'] = msu2ksu(gadioutput[5].split()[1], gadioutput[5].split()[2])
 		for i in range(0, len(gadioutput) - 2):
-			if globals()['gadiusername'] in gadioutput[i]:
+			if gadiusername in gadioutput[i]:
+				print('test')
 				globals()['gadi_used_me'] = msu2ksu(gadioutput[i].split()[1], gadioutput[i].split()[2])
 				globals()['gadi_avail_me'] = str(round(float(globals()['gadi_reserved_me']) - float(globals()['gadi_used_me']), 2))
 		print("ssh call")
@@ -51,11 +52,11 @@ def getgadiusage():
 		globals()['gadiusageruntime'] = time.time()
 
 
-def gadiusername():
+def printgadiusername():
 	return(globals()['gadiusername'])
 
 def gadiusagebar():
-	return(float(globals()['gadi_used_me'])/float(globals()['gadi_avail_me']) * 16, float(globals()['gadi_avail_me']))
+	return(float(globals()['gadi_used_me'])/float(globals()['gadi_reserved_me']) * 16, float(globals()['gadi_avail_me']))
 
 
 def gadiusageproject():
@@ -65,7 +66,7 @@ def gadiusageproject():
 
 def gadiusageme():
 	getgadiusage()
-	return(globals()['gadi_used_me'] + "/" + globals()['gadi_avail_me'])
+	return(globals()['gadi_used_me'] + "/" + globals()['gadi_reserved_me'])
 
 
 def getgadihomequota():
@@ -87,8 +88,8 @@ def gadihomequota():
 	return(globals()['gadi_homequota'] + "/10G")
 
 # for i in range(200):
-# 	print(gadiusageproject())
-# 	print(gadiusageme())
+print(gadiusageproject())
+print(gadiusageme())
 # 	print(gadihomequota())
 
 # 	time.sleep(3)
