@@ -18,24 +18,23 @@ time.sleep(2)
 
 # Master loop. Loops thorugh all of the sub functions of the display
 while True:
-		printtoarduino(arduino, "Surgery Wait:", daysuntil(date(2020,12,9)))
-		time.sleep(3)
+	printtoarduino(arduino, "Gadi Home Usage", "429.17 K/269.81 K")
+	time.sleep(3)
 
-		printtoarduino(arduino, "Uni Left:", daysuntil(date(2020,12,1)))
-		time.sleep(3)
+	printtoarduino(arduino, "Surgery Wait:", daysuntil(date(2020,12,9)))
+	time.sleep(3)
 
-		monweek, swinweek = uniweek(date.today())
-		printtoarduino(arduino, "Monash: " + monweek, "Swin: " + swinweek )
-		time.sleep(3)
+	printtoarduino(arduino, "Uni Left:", daysuntil(date(2020,12,1)))
+	time.sleep(3)
 
-		printtoarduino(arduino, "Gadi Project", gadiusageproject())
-		time.sleep(3)
+	printtoarduino(arduino, "Gadi Project", gadiusageproject())
+	time.sleep(3)
 
-		printtoarduino(arduino, "Gadi Personal", gadiusageme())
-		time.sleep(3)
+	printtoarduino(arduino, "Gadi Personal", gadiusageme())
+	time.sleep(3)
 
-		printtoarduino(arduino, "Gadi Home Usage", gadihomequota())
-		time.sleep(3)
+	printtoarduino(arduino, "Gadi Home Usage", gadihomequota())
+	time.sleep(3)
 
 ###################################### For rosalind #######################################
 		# if uname == "Rosalind":

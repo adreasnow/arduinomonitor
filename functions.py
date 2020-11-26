@@ -39,31 +39,6 @@ def runbash(command):
     if output != "":
         return(output.decode("utf-8"))
 
-# stolen from another script I wrote, this just probes the k10temp module to get the voltage 
-# and current to outpu the wattage of the processor
-def cpupower():
-	volts = subprocess.check_output("sensors k10temp-pci-00c3 | grep 'Vcore:' | tr -s ' '", shell=True)
-	volts = volts.decode("utf-8").split()
-
-	if volts[2] == "V":
-		numvolts = float(volts[1])
-	if volts[2] == "mV":
-		numvolts = float(volts[1]) / 1000
-
-	amps = subprocess.check_output("sensors k10temp-pci-00c3 | grep 'Icore:' | tr -s ' ' | cut -d' ' -f 2", shell=True)
-	amps = amps.decode("utf-8")
-
-	return(	str(round(numvolts * float(amps), 2)) + "W")
-
-# simply outputs the highest and lowest frequencies of the cpu cores
-def cpufreq():
-	freq = subprocess.check_output("cat /proc/cpuinfo | grep MHz | cut -d' ' -f3", shell=True)
-	freq = freq.split()
-	for i in range(len(freq)):
-		freq[i]=float(freq[i])
-
-	return(str(round(min(freq)/1000, 2)) + "GHz", str(round(max(freq)/1000, 2)) + "GHz")
-
 def daysuntil(enddate):
 	weeks = math.floor((enddate - date.today()).days/7)
 	days = (enddate - date.today()).days % 7
@@ -87,21 +62,6 @@ def daysuntil(enddate):
 		return(str(weeks)  + weekstring + str(days) + daystring)
 	else:
 		return(str(days) + daystring)
-
-def uniweek(currdate):
-	if currdate < date(day=7,month=11,year=2020):
-		monweek = "Week 12"
-		swinweek = "SWOTVAC"
-	elif currdate < date(day=21,month=11,year=2020):
-		monweek = "SWOTVAC"
-		swinweek = "Assessments"
-	elif currdate < date(day=2,month=12,year=2020):
-		monweek = "Exams"
-		swinweek = "DONE!"
-	elif currdate > date(day=1,month=12,year=2020):
-		monweek = "DONE!"
-		swinweek = "DONE!"
-	return(str(monweek), str(swinweek))
 
 
 # a dictionary to translate all the string characters (that i've chosen) into bytes objects that the HD44780 can understand
