@@ -7,7 +7,7 @@ global allocation
 global gadifrequency
 global gadiusername
 global gadi_reserved_me
-gadiusername = "fhh565"
+gadiusername = "as1892"
 gadifrequency = 300
 gadi_reserved_me = "960.00"
 
@@ -37,10 +37,8 @@ def getgadiusage():
 		globals()['gadi_avail_project'] = msu2ksu(gadioutput[5].split()[1], gadioutput[5].split()[2])
 		for i in range(0, len(gadioutput) - 2):
 			if gadiusername in gadioutput[i]:
-				print('test')
 				globals()['gadi_used_me'] = msu2ksu(gadioutput[i].split()[1], gadioutput[i].split()[2])
 				globals()['gadi_avail_me'] = str(round(float(globals()['gadi_reserved_me']) - float(globals()['gadi_used_me']), 2))
-		print("ssh call")
 	if 'gadiusageruntime' in vars() or 'gadiusageruntime' in globals():
 		timesince = time.time() - globals()['gadiusageruntime']
 		if timesince > globals()['gadifrequency']:
@@ -71,7 +69,6 @@ def gadiusageme():
 
 def getgadihomequota():
 	gadioutput = runbash("ssh as1892@gadi.nci.org.au \"du -hs ~\"")
-	print("ssh call")
 	return(gadioutput)	
 
 def gadihomequota():
@@ -86,11 +83,3 @@ def gadihomequota():
 		globals()['gadihomequotaruntime'] = time.time()
 
 	return(globals()['gadi_homequota'] + "/10G")
-
-# for i in range(200):
-print(gadiusageproject())
-print(gadiusageme())
-# 	print(gadihomequota())
-
-# 	time.sleep(3)
-
