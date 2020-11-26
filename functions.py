@@ -26,7 +26,7 @@ def padding(textstring):
 		padding = padding + ' '
 	return(padding)
 
-# generates a bar of the length specified that fis filled by a certain number of blocks  
+# generates a bar of the length specified that is filled by a certain number of blocks  
 def usagebar(decimal, length):
 	bar = ''
 	for i in range(round(decimal * length)):

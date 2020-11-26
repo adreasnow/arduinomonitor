@@ -29,10 +29,15 @@ while True:
 	printtoarduino(arduino, "Uni Left:", daysuntil(date(2020,12,1)))
 	time.sleep(3)
 
-	printtoarduino(arduino, "Gadi Project", gadiusageproject())
+	printtoarduino(arduino, "Gadi K96 (KSU)", gadiusageproject())
 	time.sleep(3)
 
-	printtoarduino(arduino, "Gadi Personal", gadiusageme())
+	printtoarduino(arduino, "Gadi My (KSU)", gadiusageme())
+	time.sleep(3)
+
+	filled = float(globals()['gadi_used_me'])/float(globals()['gadi_avail_me']) * 16
+
+	printtoarduino(arduino, "Gadi avail " + globals()['gadi_avail_me'], usagebar(filled, 16))
 	time.sleep(3)
 
 	printtoarduino(arduino, "Gadi Home Usage", gadihomequota())

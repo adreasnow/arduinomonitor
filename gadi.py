@@ -6,9 +6,10 @@ from datetime import datetime, timedelta, date
 global allocation
 global gadifrequency
 global gadiusername
+global gadi_reserved_me
 gadiusername = "fhh565"
 gadifrequency = 300
-allocation = "340K"
+gadi_reserved_me = "960.00"
 
 global gadiusageruntime
 global gadi_grant_project
@@ -16,22 +17,28 @@ global gadi_used_project
 global gadi_reserved_project
 global gadi_avail_project
 global gadi_used_me
-global gadi_reserved_me
 global gadi_avail_me
 global gadihomequotaruntime
 global gadi_homequota
 
+def msu2ksu(value, string):
+	if string == 'MSU':
+		value = float(value) * 1000
+	else:
+		value = value
+	return(str(value))
+
 def getgadiusage():
 	def sshcall():
 		gadioutput = runbash("ssh as1892@gadi.nci.org.au \"nci_account -v\"").splitlines()
-		globals()['gadi_grant_project'] = gadioutput[2].split()[1] + " " + gadioutput[2].split()[2][0]
-		globals()['gadi_used_project'] = gadioutput[3].split()[1] + " " + gadioutput[3].split()[2][0]
-		globals()['gadi_reserved_project'] = gadioutput[4].split()[1] + " " + gadioutput[4].split()[2][0]
-		globals()['gadi_avail_project'] = gadioutput[5].split()[1] + " " + gadioutput[5].split()[2][0]
+		globals()['gadi_grant_project'] = msu2ksu(gadioutput[2].split()[1], gadioutput[2].split()[2])
+		globals()['gadi_used_project'] = msu2ksu(gadioutput[3].split()[1], gadioutput[3].split()[2])
+		globals()['gadi_reserved_project'] = msu2ksu(gadioutput[4].split()[1], gadioutput[4].split()[2])
+		globals()['gadi_avail_project'] = msu2ksu(gadioutput[5].split()[1], gadioutput[5].split()[2])
 		for i in range(0, len(gadioutput) - 2):
 			if globals()['gadiusername'] in gadioutput[i]:
-				globals()['gadi_used_me'] = gadioutput[i].split()[1] + " " + gadioutput[i].split()[2][0]
-				globals()['gadi_reserved_me'] = gadioutput[i].split()[3] + " " + gadioutput[i].split()[4][0]
+				globals()['gadi_used_me'] = msu2ksu(gadioutput[i].split()[1], gadioutput[i].split()[2])
+				globals()['gadi_avail_me'] = float(globals()['gadi_reserved_me']) - float(globals()['gadi_used_me'])
 		print("ssh call")
 	if 'gadiusageruntime' in vars() or 'gadiusageruntime' in globals():
 		timesince = time.time() - globals()['gadiusageruntime']
@@ -44,8 +51,6 @@ def getgadiusage():
 		globals()['gadiusageruntime'] = time.time()
 
 
-
-
 def gadiusageproject():
 	getgadiusage()
 	return(globals()['gadi_avail_project'] + "/" + globals()['gadi_grant_project'])
@@ -53,7 +58,7 @@ def gadiusageproject():
 
 def gadiusageme():
 	getgadiusage()
-	return(globals()['gadi_used_me'] + "/" + globals()['gadi_reserved_me'])
+	return(globals()['gadi_used_me'] + "/" + globals()['gadi_avail_me'])
 
 
 def getgadihomequota():
@@ -74,10 +79,10 @@ def gadihomequota():
 
 	return(globals()['gadi_homequota'] + "/10G")
 
-# for i in range(200):
-# 	print(gadiusageproject())
-# 	print(gadiusageme())
-# 	print(gadihomequota())
+for i in range(200):
+	print(gadiusageproject())
+	print(gadiusageme())
+	print(gadihomequota())
 
-# 	time.sleep(3)
+	time.sleep(3)
 
