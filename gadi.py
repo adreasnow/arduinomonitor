@@ -38,7 +38,7 @@ def getgadiusage():
 		for i in range(0, len(gadioutput) - 2):
 			if globals()['gadiusername'] in gadioutput[i]:
 				globals()['gadi_used_me'] = msu2ksu(gadioutput[i].split()[1], gadioutput[i].split()[2])
-				globals()['gadi_avail_me'] = float(globals()['gadi_reserved_me']) - float(globals()['gadi_used_me'])
+				str(globals()['gadi_avail_me']) = float(globals()['gadi_reserved_me']) - float(globals()['gadi_used_me'])
 		print("ssh call")
 	if 'gadiusageruntime' in vars() or 'gadiusageruntime' in globals():
 		timesince = time.time() - globals()['gadiusageruntime']
