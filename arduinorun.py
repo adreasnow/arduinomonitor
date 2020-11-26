@@ -2,8 +2,10 @@ from serial import Serial
 import serial
 import time
 from functions import *
+from gadi import *
 
-
+global gadifrequency
+gadifrequency = 300
 functime = 7
 refreshint = 1
 uname = runbash("uname")
@@ -29,6 +31,15 @@ while True:
 
 		monweek, swinweek = uniweek(date.today())
 		printtoarduino(arduino, "Monash: " + monweek, "Swin: " + swinweek )
+		time.sleep(3)
+
+		printtoarduino(arduino, "Gadi Project", gadiusageproject())
+		time.sleep(3)
+
+		printtoarduino(arduino, "Gadi Personal", gadiusageme())
+		time.sleep(3)
+
+		printtoarduino(arduino, "Gadi \'du -hs ~\'", gadihomequota())
 		time.sleep(3)
 
 ###################################### For rosalind #######################################
