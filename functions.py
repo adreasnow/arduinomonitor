@@ -68,9 +68,14 @@ def daysuntil(enddate):
 	weeks = math.floor((enddate - date.today()).days/7)
 	days = (enddate - date.today()).days % 7
 	if days == 0:
-		daystring = ""
-		days = ""
-		weekstring = " Weeks"
+		if weeks == 0:
+			daystring = " days"
+			weekstring = ""
+			weeks = ""
+		else:
+			daystring = ""
+			days = ""
+			weekstring = " Weeks"
 	elif days == 1:
 		daystring = " day"
 		weekstring = " Weeks, "
@@ -84,54 +89,12 @@ def daysuntil(enddate):
 		return(str(days) + daystring)
 
 def uniweek(currdate):
-	if currdate < date(day=9,month=8,year=2020):
-		monweek = "Week 1"
-		swinweek = "Week 1"
-	elif currdate < date(day=16,month=8,year=2020):
-		monweek = "Week 2"
-		swinweek = "Week 2"
-	elif currdate < date(day=23,month=8,year=2020):
-		monweek = "Week 3"
-		swinweek = "Week 3"
-	elif currdate < date(day=30,month=8,year=2020):
-		monweek = "Week 4"
-		swinweek = "Week 4"
-	elif currdate < date(day=6,month=9,year=2020):
-		monweek = "Week 5"
-		swinweek = "Week 5"
-	elif currdate < date(day=13,month=9,year=2020):
-		monweek = "Week 6"
-		swinweek = "Week 6"
-	elif currdate < date(day=20,month=9,year=2020):
-		monweek = "Week 7"
-		swinweek = "Mid Sem"
-	elif currdate < date(day=27,month=9,year=2020):
-		monweek = "Mid Sem"
-		swinweek = "Week 7"
-	elif currdate < date(day=4,month=10,year=2020):
-		monweek = "Mid Sem"
-		swinweek = "Week 8"
-	elif currdate < date(day=11,month=10,year=2020):
-		monweek = "Week 8"
-		swinweek = "Week 9"
-	elif currdate < date(day=18,month=10,year=2020):
-		monweek = "Week 9"
-		swinweek = "Week 10"
-	elif currdate < date(day=25,month=10,year=2020):
-		monweek = "Week 10"
-		swinweek = "Week 11"
-	elif currdate < date(day=1,month=11,year=2020):
-		monweek = "Week 11"
-		swinweek = "Week 12"
-	elif currdate < date(day=7,month=11,year=2020):
+	if currdate < date(day=7,month=11,year=2020):
 		monweek = "Week 12"
 		swinweek = "SWOTVAC"
-	elif currdate < date(day=11,month=11,year=2020):
+	elif currdate < date(day=21,month=11,year=2020):
 		monweek = "SWOTVAC"
-		swinweek = "Exams"
-	elif currdate < date(day=12,month=11,year=2020):
-		monweek = "SWOTVAC"
-		swinweek = "DONE!"
+		swinweek = "Assessments"
 	elif currdate < date(day=2,month=12,year=2020):
 		monweek = "Exams"
 		swinweek = "DONE!"

@@ -4,8 +4,6 @@ import time
 from functions import *
 from gadi import *
 
-global gadifrequency
-gadifrequency = 300
 functime = 7
 refreshint = 1
 uname = runbash("uname")
@@ -18,12 +16,9 @@ elif uname == "Darwin":
 time.sleep(2)
 
 
-# Master loop. loops thorugh all of the sub functions of the display
+# Master loop. Loops thorugh all of the sub functions of the display
 while True:
 		printtoarduino(arduino, "Surgery Wait:", daysuntil(date(2020,12,9)))
-		time.sleep(3)
-
-		printtoarduino(arduino, "Uni Sem Left:", daysuntil(date(2020,11,4)))
 		time.sleep(3)
 
 		printtoarduino(arduino, "Uni Left:", daysuntil(date(2020,12,1)))

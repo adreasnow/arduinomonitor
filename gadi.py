@@ -3,7 +3,7 @@ from functions import *
 import time
 from datetime import datetime, timedelta, date
 
-gadifrequency = 20
+gadifrequency = 300
 
 global gadiusageruntime
 global gadi_grant_project
@@ -27,7 +27,7 @@ def getgadiusage():
 			if "fhh565" in gadioutput[i]:
 				globals()['gadi_used_me'] = gadioutput[i].split()[1] + " " + gadioutput[i].split()[2]
 				globals()['gadi_reserved_me'] = gadioutput[i].split()[3] + " " + gadioutput[i].split()[4]
-
+		print("ssh call")
 	if 'gadiusageruntime' in vars() or 'gadiusageruntime' in globals():
 		timesince = time.time() - globals()['gadiusageruntime']
 		if timesince > gadifrequency:
@@ -53,6 +53,7 @@ def gadiusageme():
 
 def getgadihomequota():
 	gadioutput = runbash("ssh as1892@gadi.nci.org.au \"du -hs ~\"")
+	print("ssh call")
 	return(gadioutput)	
 
 def gadihomequota():
