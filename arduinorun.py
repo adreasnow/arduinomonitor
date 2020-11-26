@@ -4,6 +4,8 @@ import time
 from functions import *
 from gadi import *
 
+gadifrequency = 300
+
 functime = 7
 refreshint = 1
 uname = runbash("uname")

@@ -3,7 +3,12 @@ from functions import *
 import time
 from datetime import datetime, timedelta, date
 
+global allocation
+global gadifrequency
+global gadiusername
+gadiusername = "fhh565"
 gadifrequency = 300
+allocation = "340K"
 
 global gadiusageruntime
 global gadi_grant_project
@@ -24,13 +29,13 @@ def getgadiusage():
 		globals()['gadi_reserved_project'] = gadioutput[4].split()[1] + " " + gadioutput[4].split()[2][0]
 		globals()['gadi_avail_project'] = gadioutput[5].split()[1] + " " + gadioutput[5].split()[2][0]
 		for i in range(0, len(gadioutput) - 2):
-			if "fhh565" in gadioutput[i]:
+			if globals()['gadiusername'] in gadioutput[i]:
 				globals()['gadi_used_me'] = gadioutput[i].split()[1] + " " + gadioutput[i].split()[2][0]
 				globals()['gadi_reserved_me'] = gadioutput[i].split()[3] + " " + gadioutput[i].split()[4][0]
 		print("ssh call")
 	if 'gadiusageruntime' in vars() or 'gadiusageruntime' in globals():
 		timesince = time.time() - globals()['gadiusageruntime']
-		if timesince > gadifrequency:
+		if timesince > globals()['gadifrequency']:
 			sshcall()
 			globals()['gadiusageruntime'] = time.time()
 
@@ -59,7 +64,7 @@ def getgadihomequota():
 def gadihomequota():
 	if 'gadihomequotaruntime' in vars() or 'gadihomequotaruntime' in globals():
 		timesince = time.time() - globals()['gadihomequotaruntime']
-		if timesince > gadifrequency:
+		if timesince > globals()['gadifrequency']:
 			globals()['gadi_homequota'] = getgadihomequota().split()[0]
 			globals()['gadihomequotaruntime'] = time.time()
 
