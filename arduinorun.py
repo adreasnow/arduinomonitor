@@ -18,10 +18,10 @@ time.sleep(2)
 
 # Master loop. Loops thorugh all of the sub functions of the display
 while True:
-	printtoarduino(arduino, "Since Surgery:", daysuntil(date(2020,12,6)))
+	printtoarduino(arduino, "Since Surgery:", dayssince(date(2020,12,6)))
 	time.sleep(refreshint)
 
-	printtoarduino(arduino, "Honours Wait:", dayssince(date(2021,2,9)))
+	printtoarduino(arduino, "Honours Wait:", daysuntil(date(2021,2,9)))
 	time.sleep(refreshint)
 
 	# printtoarduino(arduino, "Gadi K96 KSU", gadiusageproject())
