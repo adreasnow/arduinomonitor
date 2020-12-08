@@ -63,6 +63,29 @@ def daysuntil(enddate):
 	else:
 		return(str(days) + daystring)
 
+def dayssince(enddate):
+	weeks = math.floor((date.today() - enddate).days/7)
+	days = (date.today() - enddate).days % 7
+	if days == 0:
+		if weeks == 0:
+			daystring = " days"
+			weekstring = ""
+			weeks = ""
+		else:
+			daystring = ""
+			days = ""
+			weekstring = " Weeks"
+	elif days == 1:
+		daystring = " day"
+		weekstring = " Weeks, "
+	else:
+		daystring = " days"
+		weekstring = " Weeks, "
+
+	if weeks != 0:
+		return(str(weeks)  + weekstring + str(days) + daystring)
+	else:
+		return(str(days) + daystring)
 
 # a dictionary to translate all the string characters (that i've chosen) into bytes objects that the HD44780 can understand
 HD44780 = {" " : 0x20, "A" : 0x41, "B" : 0x42, "C" : 0x43, "D" : 0x44,

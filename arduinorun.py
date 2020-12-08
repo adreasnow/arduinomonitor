@@ -21,7 +21,7 @@ while True:
 	printtoarduino(arduino, "Since Surgery:", daysuntil(date(2020,12,6)))
 	time.sleep(refreshint)
 
-	printtoarduino(arduino, "Honours Wait:", daysuntil(date(2021,02,9)))
+	printtoarduino(arduino, "Honours Wait:", dayssince(date(2021,2,9)))
 	time.sleep(refreshint)
 
 	# printtoarduino(arduino, "Gadi K96 KSU", gadiusageproject())
