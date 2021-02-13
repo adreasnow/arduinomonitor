@@ -59,7 +59,7 @@ def gadiusagebar():
 
 def gadiusageproject():
 	getgadiusage()
-	return(globals()['gadi_avail_project'] + "/" + globals()['gadi_grant_project'])
+	return(globals()['gadi_used_project'] + "/" + globals()['gadi_grant_project'])
 
 
 def gadiusageme():
