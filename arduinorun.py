@@ -21,11 +21,17 @@ while True:
 	printtoarduino(arduino, "Since Surgery:", dayssince(date(2020,12,9)))
 	time.sleep(refreshint)
 
-	printtoarduino(arduino, "Honours Wait:", daysuntil(date(2021,2,9)))
+	# printtoarduino(arduino, "Thesis Due:", daysuntil(date(2021,11,15)))
+	# time.sleep(refreshint)
+
+	# printtoarduino(arduino, "M/Y Report Due:", daysuntil(date(2021,8,20)))
+	# time.sleep(refreshint)
+
+	printtoarduino(arduino, "Lit Review Due:", daysuntil(date(2021,4,30)))
 	time.sleep(refreshint)
 
-	# printtoarduino(arduino, "Gadi K96 KSU", gadiusageproject())
-	# time.sleep(refreshint)
+	printtoarduino(arduino, "Gadi K96 KSU", gadiusageproject())
+	time.sleep(refreshint)
 
 	# printtoarduino(arduino, "Gadi " + str(printgadiusername()) + " KSU", gadiusageme())
 	# time.sleep(refreshint)
