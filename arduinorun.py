@@ -30,7 +30,12 @@ while True:
 	printtoarduino(arduino, "Lit Review Due:", daysuntil(date(2021,4,30)))
 	time.sleep(refreshint)
 
-	printtoarduino(arduino, "Gadi K96 KSU", gadiusageproject())
+	try:
+		gadiusage = gadiusageproject()
+	except:
+		gadiusage = "no internet"
+
+	printtoarduino(arduino, "Gadi K96 KSU", gadiusage)
 	time.sleep(refreshint)
 
 	# printtoarduino(arduino, "Gadi " + str(printgadiusername()) + " KSU", gadiusageme())
