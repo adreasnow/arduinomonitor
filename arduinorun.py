@@ -27,7 +27,7 @@ while True:
 	# printtoarduino(arduino, "M/Y Report Due:", daysuntil(date(2021,8,20)))
 	# time.sleep(refreshint)
 
-	printtoarduino(arduino, "Lit Review Due:", daysuntil(date(2021,4,30)))
+	printtoarduino(arduino, "Lit Review Due:", daysuntil(date(2021,5,7)))
 	time.sleep(refreshint)
 
 	try:
