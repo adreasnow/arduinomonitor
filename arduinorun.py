@@ -18,25 +18,35 @@ time.sleep(2)
 
 # Master loop. Loops thorugh all of the sub functions of the display
 while True:
-	printtoarduino(arduino, "Since Surgery:", dayssince(date(2020,12,9)))
-	time.sleep(refreshint)
-
 	# printtoarduino(arduino, "Thesis Due:", daysuntil(date(2021,11,5)))
 	# time.sleep(refreshint)
 
 	# printtoarduino(arduino, "M/Y Report Due:", daysuntil(date(2021,8,20)))
 	# time.sleep(refreshint)
 
+
+	printtoarduino(arduino, "GC Ass. Due:", daysuntil(date(2021,4,16)))
+	time.sleep(refreshint)
+
+	printtoarduino(arduino, "Org. Exam Due:", daysuntil(date(2021,4,20)))
+	time.sleep(refreshint)
+
+	printtoarduino(arduino, "Supra Ass. Due:", daysuntil(date(2021,4,23)))
+	time.sleep(refreshint)
+
+	printtoarduino(arduino, "Proj. Plan Due:", daysuntil(date(2021,4,26)))
+	time.sleep(refreshint)
+
 	printtoarduino(arduino, "Lit Review Due:", daysuntil(date(2021,5,7)))
 	time.sleep(refreshint)
 
-	try:
-		gadiusage = gadiusageproject()
-	except:
-		gadiusage = "no internet"
+	# try:
+	# 	gadiusage = gadiusageproject()
+	# except:
+	# 	gadiusage = "no internet"
 
-	printtoarduino(arduino, "Gadi K96 KSU", gadiusage)
-	time.sleep(refreshint)
+	# printtoarduino(arduino, "Gadi K96 KSU", gadiusage)
+	# time.sleep(refreshint)
 
 	# printtoarduino(arduino, "Gadi " + str(printgadiusername()) + " KSU", gadiusageme())
 	# time.sleep(refreshint)
